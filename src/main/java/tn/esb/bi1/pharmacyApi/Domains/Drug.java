@@ -22,7 +22,9 @@ public class Drug {
     @GeneratedValue (strategy = GenerationType.IDENTITY) //permet de generer automatiquemnt les valeurs de la clé primaire
     private Long code;
     @EqualsAndHashCode.Include
+    @Column(unique=true)
     private String name;
+    @Column(precision = 7, scale=2)//le prix est sur 7 chiffres y compris deux après la virgule
     private double price;
     @EqualsAndHashCode.Include
     private LocalDate fabricationDate;
