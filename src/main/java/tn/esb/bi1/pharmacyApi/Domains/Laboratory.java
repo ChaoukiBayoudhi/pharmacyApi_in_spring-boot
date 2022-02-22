@@ -1,9 +1,14 @@
 package tn.esb.bi1.pharmacyApi.Domains;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
-
+@Data //genère getters, setters, RequiredArgsConstructor, toString, equals et hashCode
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "lab_table",
         uniqueConstraints = {@UniqueConstraint(name = "uniqueNameAndEmail",columnNames = {"name","email"})}
@@ -18,9 +23,14 @@ public class Laboratory {
     private String name;
     @NonNull
     //@Column(unique=true)
+    @EqualsAndHashCode.Include
     private String email;
     @NonNull
     private String phoneNumber;
     private String siteUrl;
     private String salesManagerName;
+
+    @OneToOne(mappedBy="lab",cascade=CascadeType.ALL)
+    @JoinColumn(name = "idAddress",referencedColumnName = "id")
+    private Address labAddress;
 }

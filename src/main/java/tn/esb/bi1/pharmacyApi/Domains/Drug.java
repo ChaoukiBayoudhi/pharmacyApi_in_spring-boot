@@ -31,6 +31,7 @@ public class Drug {
     @EqualsAndHashCode.Include
     private LocalDate expirationDate;
     private String description;
+    @Column(columnDefinition = "integer default 0", nullable = false)
     private int stock;
     @Lob
     private byte[] image;
