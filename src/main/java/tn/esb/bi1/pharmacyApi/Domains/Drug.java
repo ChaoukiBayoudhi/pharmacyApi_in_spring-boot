@@ -1,6 +1,7 @@
 package tn.esb.bi1.pharmacyApi.Domains;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,8 +28,10 @@ public class Drug {
     @Column(precision = 7, scale=2)//le prix est sur 7 chiffres y compris deux après la virgule
     private double price;
     @EqualsAndHashCode.Include
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate fabricationDate;
     @EqualsAndHashCode.Include
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate expirationDate;
     private String description;
     @Column(columnDefinition = "integer default 0", nullable = false)
