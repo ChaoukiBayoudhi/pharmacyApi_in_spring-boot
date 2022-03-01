@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Data //genère getters, setters, RequiredArgsConstructor, toString, equals et hashCode
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -33,4 +36,6 @@ public class Laboratory {
     @JoinColumn(name = "address_id",referencedColumnName = "id") //definit la clé etrangère "address_id"
     //referencedColumnName est optionel
     private Address laboratoryAddress;
+    @OneToMany(mappedBy = "drugLaboratory",cascade=CascadeType.ALL)
+    private Set<Drug> drugs=new HashSet<>();
 }

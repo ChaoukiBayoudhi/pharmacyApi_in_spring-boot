@@ -35,5 +35,8 @@ public class Drug {
     private int stock;
     @Lob
     private byte[] image;
+    @ManyToOne
+    @JoinColumn(name="laboratory_id")
+    private Laboratory drugLaboratory;
 
 }
