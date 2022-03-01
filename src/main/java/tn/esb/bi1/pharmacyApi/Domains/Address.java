@@ -21,7 +21,6 @@ public class Address {
     private String city;
     @NonNull
     private int postalCode;
-
     @OneToOne
     private Laboratory lab;
 }

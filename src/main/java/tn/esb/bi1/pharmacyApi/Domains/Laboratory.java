@@ -29,8 +29,8 @@ public class Laboratory {
     private String phoneNumber;
     private String siteUrl;
     private String salesManagerName;
-
     @OneToOne(mappedBy="lab",cascade=CascadeType.ALL)
-    @JoinColumn(name = "idAddress",referencedColumnName = "id")
-    private Address labAddress;
+    @JoinColumn(name = "address_id",referencedColumnName = "id") //definit la clé etrangère "address_id"
+    //referencedColumnName est optionel
+    private Address laboratoryAddress;
 }
