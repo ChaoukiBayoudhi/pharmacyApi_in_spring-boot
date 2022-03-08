@@ -35,6 +35,7 @@ public class Prescription {
     @ManyToMany
     private Set<Drug> drugs=new HashSet<>();
 
+
     //relation avec PharmacistPrescription
     @OneToMany(mappedBy = "prescription",cascade=CascadeType.ALL)
     private Set<PharmacistPrescription> pharmacistPrescriptionSet=new HashSet<>();
