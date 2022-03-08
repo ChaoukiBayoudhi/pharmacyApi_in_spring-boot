@@ -6,7 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,6 +29,10 @@ public class Pharmacist {
     @JsonFormat(pattern="hh:mm")
     @NonNull
     private LocalTime startTime;
+
+    //relation avec PharmacistPrescription
+    @OneToMany(mappedBy = "pharmacist",cascade=CascadeType.ALL)
+    private Set<PharmacistPrescription> pharmacistPrescriptionSet=new HashSet<>();
 
     @Override
     public boolean equals(Object o) {

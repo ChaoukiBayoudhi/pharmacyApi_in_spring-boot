@@ -34,4 +34,9 @@ public class Prescription {
     //implementation de la relation n-n entre "Drug" et "Prescription"
     @ManyToMany
     private Set<Drug> drugs=new HashSet<>();
+
+    //relation avec PharmacistPrescription
+    @OneToMany(mappedBy = "prescription",cascade=CascadeType.ALL)
+    private Set<PharmacistPrescription> pharmacistPrescriptionSet=new HashSet<>();
+
 }
