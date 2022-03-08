@@ -6,6 +6,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter //genère tous les getters pour tous les attributs , au moment du runtime
 @Setter
 @NoArgsConstructor //genère un constructeur non paramétré
@@ -41,5 +44,17 @@ public class Drug {
     @ManyToOne
     @JoinColumn(name="laboratory_id")
     private Laboratory drugLaboratory;
+
+    //implementation de la relation n-n entre "Drug" et "Prescription"
+    @ManyToMany
+    //definition de la table association (PersectiptionDrugs)
+    @JoinTable(name="prescription_drugs",
+            //en SQL :
+            //constraint fk1 foreign key drug_code references Drug(code)
+            //dans ce cas l'attribut referencedColumnName est optionnel
+            joinColumns = @JoinColumn(name="drug_code",referencedColumnName = "code"),
+            inverseJoinColumns = @JoinColumn(name="prescription_id",referencedColumnName = "id")
+    )
+    private Set<Prescription> prescriptions=new HashSet<>();
 
 }

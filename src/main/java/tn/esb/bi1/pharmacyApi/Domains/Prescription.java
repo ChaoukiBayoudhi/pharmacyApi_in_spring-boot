@@ -3,11 +3,11 @@ package tn.esb.bi1.pharmacyApi.Domains;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @ToString
@@ -30,4 +30,8 @@ public class Prescription {
     @NonNull
     private LocalDate purchaseDate;
    //redefine equals and hashCode
+
+    //implementation de la relation n-n entre "Drug" et "Prescription"
+    @ManyToMany
+    private Set<Drug> drugs=new HashSet<>();
 }
