@@ -3,10 +3,12 @@ package tn.esb.bi1.pharmacyApi.Domains;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter //genère tous les getters pour tous les attributs , au moment du runtime
@@ -16,10 +18,11 @@ import java.util.Set;
 //@ToString //redefinit la methode toString en retournant les valeurs de tous attributs
 //@ToString(exclude={"stock","image"})//retourne les valeurs de tous les attributs sauf celles de stock et image.
 
-@ToString(exclude = "image")//retourne tous sauf l'image
+//@ToString(exclude = "image")//retourne tous sauf l'image
+@ToString
 //@EqualsAndHashCode //permet de redefinir les deux méthodes "equals" et "hashCode" en se basant sur tous les attributs pour comparer
 //@EqualsAndHashCode(exclude={"image","decription","code"})//compare par tous les attributs sauf "image" "description" et "code".
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)//utilise uniquement les attributs annotés avec @...Include dans la comparaison
+//utilise uniquement les attributs annotés avec @...Include dans la comparaison
 @Entity //permet de mentionner à l'ORM : Object Relational Mapping que la classe Drug sera transformer en une table relationnelle
 public class Drug {
     @Id //l'attribut "code" est la clé primaire de la table Drug
@@ -40,6 +43,7 @@ public class Drug {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int stock;
     @Lob
+    @ToString.Exclude
     private byte[] image;
     @ManyToOne
     @JoinColumn(name="laboratory_id")
@@ -55,6 +59,19 @@ public class Drug {
             joinColumns = @JoinColumn(name="drug_code",referencedColumnName = "code"),
             inverseJoinColumns = @JoinColumn(name="prescription_id",referencedColumnName = "id")
     )
+    @ToString.Exclude
     private Set<Prescription> prescriptions=new HashSet<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drug drug = (Drug) o;
+        return name.equals(drug.name) && fabricationDate.equals(drug.fabricationDate) && expirationDate.equals(drug.expirationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

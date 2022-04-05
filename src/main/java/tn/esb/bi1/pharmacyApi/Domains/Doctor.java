@@ -25,7 +25,7 @@ public class Doctor {
     private String email;
     private String phoneNumber;
     @Enumerated(EnumType.STRING)    //cette annotation informe l'ORM que le type de speciality est chaine ce caractères
-    @Column(columnDefinition = "FamilyDoctor")
+    @Column(length=30,columnDefinition = "varchar(30) default 'FamilyDoctor'")
     private DoctorSpeciality speciality;
 
     @Override

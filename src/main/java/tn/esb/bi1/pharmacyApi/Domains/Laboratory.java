@@ -14,7 +14,7 @@ import java.util.Set;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "lab_table",
-        uniqueConstraints = {@UniqueConstraint(name = "uniqueNameAndEmail",columnNames = {"name","email"})}
+        uniqueConstraints = {@UniqueConstraint(name = "uniqueNameAndEmail",columnNames = {"lab_name","email"})}
 )//permet de personaliser les informations sur une table
 public class Laboratory {
     @Id

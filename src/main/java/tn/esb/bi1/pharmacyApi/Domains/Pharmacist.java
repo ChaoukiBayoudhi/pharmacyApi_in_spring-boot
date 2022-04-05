@@ -18,7 +18,7 @@ import java.util.Set;
 @Entity
 public class Pharmacist {
     @Id
-    @Column(name="pahrmacist_cin", length=8)
+    @Column(name="pharmacist_cin", length=8)
     private String cin;
     @NonNull
     private String firstName;

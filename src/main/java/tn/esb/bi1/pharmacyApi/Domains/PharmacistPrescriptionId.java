@@ -18,8 +18,8 @@ import java.util.Objects;
 //Pour definr la clé primaire composite
 //Une classe embaddable doit necessairement implementer l'interface Serializable, doit aussi redefinir Equals and HashCode, doit avoir un constructeur non parametré et parametré et genere getters and setters
 public class PharmacistPrescriptionId implements Serializable {
-    @Column(name="pharmacist_id")
-    private Long idPharmacist;
+    @Column(name="pharmacist_cin")
+    private String idPharmacist;
     @Column(name = "prescription_id")
     private Long idPrescription;
 

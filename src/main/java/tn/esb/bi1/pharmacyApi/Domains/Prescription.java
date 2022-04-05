@@ -32,11 +32,13 @@ public class Prescription {
    //redefine equals and hashCode
 
     //implementation de la relation n-n entre "Drug" et "Prescription"
-    @ManyToMany
+    @ManyToMany(mappedBy="prescriptions")
+    @ToString.Exclude
     private Set<Drug> drugs=new HashSet<>();
 
     //relation avec PharmacistPrescription
     @OneToMany(mappedBy = "prescription",cascade=CascadeType.ALL)
+    @ToString.Exclude
     private Set<PharmacistPrescription> pharmacistPrescriptionSet=new HashSet<>();
 
 }
