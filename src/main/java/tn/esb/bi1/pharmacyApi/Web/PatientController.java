@@ -1,13 +1,11 @@
 package tn.esb.bi1.pharmacyApi.Web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tn.esb.bi1.pharmacyApi.Domains.Patient;
 import tn.esb.bi1.pharmacyApi.Services.PatientService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,13 +24,13 @@ public class PatientController {
     }
     @PostMapping("/add")
     //L'url de cette methode =>http://localhost:9592/patients/add
-    public Patient addNewPatient(Patient patient)
+    public Patient addNewPatient(@Valid @RequestBody Patient patient)
     {
         return patientServ.addPatient(patient);
     }
     
     @GetMapping("/{numss}")
-    public Optional<Patient> getPatient(Long numss)
+    public Optional<Patient> getPatient(@PathVariable Long numss)
     {
         return patientServ.getPatientById(numss);
     }
