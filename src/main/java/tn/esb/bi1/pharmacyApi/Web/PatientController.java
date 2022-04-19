@@ -28,7 +28,8 @@ public class PatientController {
     {
         return patientServ.addPatient(patient);
     }
-    
+
+
     @GetMapping("/{numss}")
     public Optional<Patient> getPatient(@PathVariable Long numss)
     {
